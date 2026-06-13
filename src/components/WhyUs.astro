@@ -1,0 +1,167 @@
+---
+const cards = [
+	{
+		id: 'reliable',
+		icon: '/images/icons/handshake.png',
+		title: 'Reliable & Professional',
+		expanded: true,
+	},
+	{
+		id: 'year-round',
+		icon: '/images/icons/calendar.png',
+		title: 'Year-Round Protection',
+		expanded: false,
+	},
+	{
+		id: 'residential',
+		icon: '/images/icons/house.png',
+		title: 'Residential & Commercial Service',
+		expanded: false,
+	},
+	{
+		id: 'safe',
+		icon: '/images/icons/dog.png',
+		title: 'Safe for Family & Pets',
+		expanded: false,
+	},
+];
+
+const bodyText =
+	"Golden Driller was built to bring back the kind of service people used to count on — the classic serviceman who shows up, does the job right, and stands behind his work. Whether we're stopping an active problem or putting protection in place, we treat every property with care and every customer's time with respect. Hard work, straight answers, fair pricing — that's how we earn your business, and that's how we keep it.";
+---
+
+<section class="why-us" id="why-us">
+	<div class="why-us-intro">
+		<p class="section-label">— The Driller Way</p>
+		<h2 class="section-heading">Why Golden Driller?</h2>
+		<p class="body-text">{bodyText}</p>
+	</div>
+
+	<div class="cards">
+		{
+			cards.map((card) => (
+				<details class="card" open={card.expanded}>
+					<summary class="card-header">
+						<div class="card-icon-wrap">
+							<img src={card.icon} alt="" width="58" height="58" />
+							<span class="card-title">{card.title}</span>
+						</div>
+						<span class="toggle-icon" aria-hidden="true">
+							<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+								<path
+									d="M8 3v10M3 8h10"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								/>
+							</svg>
+						</span>
+					</summary>
+					<div class="card-body">
+						<p class="body-text">{bodyText}</p>
+					</div>
+				</details>
+			))
+		}
+	</div>
+
+	<a href="#quote" class="btn btn-primary btn-full quote-cta">
+		Get a Quote in 1 Business Day
+	</a>
+</section>
+
+<style>
+	.why-us {
+		padding: var(--space-xl) var(--space-lg);
+		background: var(--color-cream);
+	}
+
+	.why-us-intro {
+		margin-bottom: var(--space-xl);
+	}
+
+	.cards {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
+
+	.card {
+		background: var(--color-white);
+		border: 2px solid var(--color-green);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		width: 100%;
+	}
+
+	.card-header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: var(--space-sm);
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.card-header::-webkit-details-marker {
+		display: none;
+	}
+
+	.card-icon-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-sm);
+		width: 100%;
+	}
+
+	.card-title {
+		font-size: 0.875rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		text-align: center;
+		color: var(--color-green);
+	}
+
+	.toggle-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		margin-top: var(--space-sm);
+		border-radius: 50%;
+		background: var(--color-gold);
+		color: var(--color-white);
+	}
+
+	.card[open] .toggle-icon svg path:first-child {
+		display: none;
+	}
+
+	.card-body {
+		padding: 0 var(--space-sm) var(--space-sm);
+	}
+
+	.card-body .body-text {
+		font-size: 0.9375rem;
+	}
+
+	.quote-cta {
+		font-size: 0.875rem;
+		line-height: 1.3;
+		padding: 18px 20px;
+	}
+
+	@media (min-width: 768px) {
+		.cards {
+			/* Keep all cards the same width across breakpoints */
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: var(--space-md);
+		}
+	}
+</style>

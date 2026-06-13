@@ -1,0 +1,101 @@
+---
+---
+
+<section class="hero">
+	<div class="hero-left">
+		<div class="hero-content">
+			<h1 class="hero-heading">Your home. Your&nbsp;rules. Zero pests.</h1>
+			<p class="hero-subtitle">
+				Fair prices, straight talk, and a job we'd stake our name on.
+			</p>
+		</div>
+
+		<div class="hero-actions">
+			<a href="#why-us" class="btn btn-outline">Learn More</a>
+			<a href="#quote" class="btn btn-primary">Grab a Quote</a>
+		</div>
+	</div>
+
+	<img
+		class="hero-image"
+		src="/images/hero.png"
+		alt="Golden Driller pest control technician treating a lawn"
+		width="354"
+		height="354"
+	/>
+</section>
+
+<style>
+	.hero {
+		padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+		background: var(--color-white);
+	}
+
+	.hero-content {
+		margin-bottom: var(--space-xl);
+	}
+
+	.hero-left {
+		display: block;
+	}
+
+	.hero-heading {
+		font-size: 2.25rem;
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: 0.01em;
+		text-transform: uppercase;
+		color: var(--color-green);
+		margin: 0 0 var(--space-md);
+	}
+
+	.hero-subtitle {
+		font-size: 1rem;
+		line-height: 1.5;
+		color: var(--color-green);
+		margin: 0;
+	}
+
+	.hero-actions {
+		display: flex;
+		gap: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
+
+	.hero-actions .btn {
+		flex: 1;
+	}
+
+	.hero-image {
+		width: 100%;
+		border-radius: var(--radius-md);
+		object-fit: cover;
+		aspect-ratio: 1;
+	}
+
+	@media (min-width: 768px) {
+		.hero {
+			padding-left: var(--space-xl);
+			padding-right: var(--space-xl);
+		}
+
+		.hero {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			column-gap: var(--space-xl);
+		}
+
+		.hero-content {
+			margin-bottom: 0;
+		}
+
+		.hero-actions {
+			margin-bottom: 0;
+		}
+
+		.hero-image {
+			aspect-ratio: 1 / 1;
+		}
+	}
+</style>

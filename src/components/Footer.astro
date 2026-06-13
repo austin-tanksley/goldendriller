@@ -1,0 +1,91 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<a href="#quote" class="btn btn-cream">Quote Within 1 Business Day</a>
+
+	<nav class="footer-nav" aria-label="Footer navigation">
+		<a href="/">Home</a>
+		<a href="#why-us">About</a>
+		<a href="#services">Services</a>
+	</nav>
+
+	<span class="footer-logo">LOGO</span>
+
+	<p class="copyright">
+		© {year} Golden Driller Pest Control All Rights Reserved
+	</p>
+</footer>
+
+<style>
+	.footer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-lg);
+		padding: var(--space-lg) var(--space-lg) var(--space-xl);
+		background: var(--color-green);
+		text-align: center;
+	}
+
+	.btn-cream {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		max-width: 331px;
+		padding: 14px 20px;
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--color-green);
+		background: var(--color-cream);
+		border-radius: var(--radius-md);
+		transition: opacity 0.2s;
+	}
+
+	.btn-cream:hover {
+		opacity: 0.85;
+	}
+
+	.footer-nav {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-lg);
+	}
+
+	.footer-nav a {
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--color-white);
+	}
+
+	.footer-logo {
+		font-size: 1.5rem;
+		font-weight: 800;
+		letter-spacing: 0.02em;
+		color: var(--color-text);
+	}
+
+	.copyright {
+		font-size: 0.6875rem;
+		font-weight: 600;
+		line-height: 1.4;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--color-gold);
+		margin: 0;
+		max-width: 280px;
+	}
+
+	@media (min-width: 768px) {
+		.footer-nav {
+			flex-direction: row;
+			gap: var(--space-lg);
+		}
+	}
+</style>
