@@ -4,24 +4,28 @@ const cards = [
 		id: 'reliable',
 		icon: '/images/icons/handshake.png',
 		title: 'Reliable & Professional',
+		body: 'We show up when we say we will — no guessing, no waiting around. You\'ll get clear communication, honest recommendations, and dependable service every time.',
 		expanded: true,
 	},
 	{
 		id: 'year-round',
 		icon: '/images/icons/calendar.png',
 		title: 'Year-Round Protection',
+		body: 'Pest control isn\'t one-and-done. Our recurring service plans keep your home protected through every season — no surprises, no infestations.',
 		expanded: false,
 	},
 	{
 		id: 'residential',
 		icon: '/images/icons/house.png',
 		title: 'Residential & Commercial Service',
+		body: 'From homes to businesses, we provide reliable pest control tailored to your space. Whether it\'s protecting your family or your customers, we\'ve got you covered.',
 		expanded: false,
 	},
 	{
 		id: 'safe',
 		icon: '/images/icons/dog.png',
 		title: 'Safe for Family & Pets',
+		body: 'We use targeted treatments designed to eliminate pests while keeping your family and pets safe. Low-impact solutions with maximum effectiveness.',
 		expanded: false,
 	},
 ];
@@ -66,7 +70,7 @@ const bodyText =
 						</span>
 					</summary>
 					<div class="card-body">
-						<p class="body-text">{bodyText}</p>
+						<p class="body-text">{card.body}</p>
 					</div>
 				</details>
 			))
@@ -107,7 +111,7 @@ const bodyText =
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: var(--space-sm);
+		padding: var(--space-lg) var(--space-md);
 		cursor: pointer;
 		list-style: none;
 		font-weight: 900;
@@ -155,11 +159,13 @@ const bodyText =
 	}
 
 	.card-body {
-		padding: 0 var(--space-sm) var(--space-sm);
+		padding: 0 var(--space-lg) var(--space-lg);
 	}
 
 	.card-body .body-text {
-		font-size: 1.125rem;
+		font-size: 1.3125rem;
+		line-height: 1.6;
+		margin: 0;
 	}
 
 	.quote-cta {
@@ -181,6 +187,10 @@ const bodyText =
 			flex-direction: column;
 			align-items: stretch;
 			gap: var(--space-md);
+		}
+
+		.card-body .body-text {
+			text-align: center;
 		}
 	}
 </style>
