@@ -1,12 +1,13 @@
 ---
 const services = [
 	'General Pest Control',
-	'Termite Inspection / Treatment',
 	'Rodent Control',
 	'Mosquito / Outdoor',
 	'Commercial Service',
 	'Other / Not Sure',
 ];
+
+const referralSources = ['Google', 'Facebook', 'Instagram', 'Friend', 'Other'];
 ---
 
 <dialog class="quote-modal" id="quote-modal" aria-labelledby="quote-modal-title">
@@ -67,8 +68,17 @@ const services = [
 
 		<div class="field">
 			<label for="q-service">What do you need help with?</label>
-			<select id="q-service" name="service">
+			<select id="q-service" name="service" >
+				<option value="">--Please choose an option--</option>
 				{services.map((service) => <option value={service}>{service}</option>)}
+			</select>
+		</div>
+
+		<div class="field">
+			<label for="q-referral">Where did you hear about us?</label>
+			<select id="q-referral" name="referral">
+				<option value="">--Please choose an option--</option>
+				{referralSources.map((source) => <option value={source}>{source}</option>)}
 			</select>
 		</div>
 
