@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import QuoteModal from '../components/QuoteModal.astro';
 ---
 
 <!doctype html>
@@ -10,6 +11,12 @@ import '../styles/global.css';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=BBH+Hegarty&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
 		<meta
 			name="description"
 			content="Golden Driller Pest Control — fair prices, straight talk, and a job we'd stake our name on."
@@ -20,5 +27,6 @@ import '../styles/global.css';
 		<div class="page">
 			<slot />
 		</div>
+		<QuoteModal />
 	</body>
 </html>

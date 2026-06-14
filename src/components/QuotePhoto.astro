@@ -2,23 +2,60 @@
 ---
 
 <section class="quote-photo" id="quote">
-	<img
-		src="/images/quote.png"
-		alt="We believe in earning your business the old-fashioned way: with hard work, straight answers, and fair pricing."
-		width="354"
-		height="478"
-	/>
+	<div class="quote-photo__frame">
+		<img
+			class="quote-photo__bg"
+			src="/images/quote.png"
+			alt=""
+			width="354"
+			height="478"
+		/>
+		<h1 class="quote-photo__text">
+			We believe in earning your business the old-fashioned way: with hard work, straight answers, and fair pricing.
+		</h1>
+	</div>
 </section>
 
 <style>
 	.quote-photo {
-		padding: var(--space-xl) var(--space-lg);
+		padding: var(--space-xl) var(--content-inset);
 		background: var(--color-cream);
 	}
 
-	.quote-photo img {
-		width: 100%;
+	.quote-photo__frame {
+		position: relative;
+		border: 3px solid var(--color-green);
 		border-radius: var(--radius-md);
+		overflow: hidden;
+	}
+
+	.quote-photo__bg {
+		display: block;
+		width: 100%;
+		height: 100%;
 		object-fit: cover;
+		filter: brightness(0.75);
+	}
+
+	.quote-photo__text {
+		position: absolute;
+		bottom: var(--space-lg);
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
+		margin: 0;
+		text-align: center;
+		font-family: var(--font-heading);
+		font-size: 1.75rem;
+		font-weight: 800;
+		line-height: 1.05;
+		text-transform: uppercase;
+		color: var(--color-white);
+	}
+
+	@media (min-width: 768px) {
+		.quote-photo__text {
+			font-size: 3.5rem;
+		}
 	}
 </style>

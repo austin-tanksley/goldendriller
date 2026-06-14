@@ -1,0 +1,258 @@
+---
+const services = [
+	'General Pest Control',
+	'Termite Inspection / Treatment',
+	'Rodent Control',
+	'Mosquito / Outdoor',
+	'Commercial Service',
+	'Other / Not Sure',
+];
+---
+
+<dialog class="quote-modal" id="quote-modal" aria-labelledby="quote-modal-title">
+	<form
+		name="quote-request"
+		method="POST"
+		data-netlify="true"
+		netlify-honeypot="bot-field"
+		class="quote-form"
+		id="quote-form"
+	>
+		<input type="hidden" name="form-name" value="quote-request" />
+		<p class="bot-field" hidden>
+			<label>Don't fill this out if you're human: <input name="bot-field" /></label>
+		</p>
+
+		<button
+			type="button"
+			class="quote-close"
+			aria-label="Close quote form"
+		>
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+				<path
+					d="M5 5l10 10M15 5L5 15"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+				/>
+			</svg>
+		</button>
+
+		<p class="section-label">— Fast & Free</p>
+		<h2 class="section-heading quote-modal-title" id="quote-modal-title">Request a Quote</h2>
+		<p class="body-text quote-intro">
+			Tell us a bit about your property and we'll get back to you within 1 business day.
+		</p>
+
+		<div class="field">
+			<label for="q-name">Name</label>
+			<input id="q-name" name="name" type="text" autocomplete="name" required />
+		</div>
+
+		<div class="field-row">
+			<div class="field">
+				<label for="q-phone">Phone</label>
+				<input id="q-phone" name="phone" type="tel" autocomplete="tel" required />
+			</div>
+			<div class="field">
+				<label for="q-email">Email</label>
+				<input id="q-email" name="email" type="email" autocomplete="email" required />
+			</div>
+		</div>
+
+		<div class="field">
+			<label for="q-address">Service Address</label>
+			<input id="q-address" name="address" type="text" autocomplete="street-address" />
+		</div>
+
+		<div class="field">
+			<label for="q-service">What do you need help with?</label>
+			<select id="q-service" name="service">
+				{services.map((service) => <option value={service}>{service}</option>)}
+			</select>
+		</div>
+
+		<div class="field">
+			<label for="q-message">Anything else? (optional)</label>
+			<textarea id="q-message" name="message" rows="3"></textarea>
+		</div>
+
+		<button type="submit" class="btn btn-primary btn-full quote-submit" value="submit">
+			Send Request
+		</button>
+	</form>
+</dialog>
+
+<script>
+	const modal = document.getElementById('quote-modal') as HTMLDialogElement | null;
+	const form = document.getElementById('quote-form') as HTMLFormElement | null;
+
+	if (modal && form) {
+		const submitBtn = form.querySelector('.quote-submit') as HTMLButtonElement | null;
+		const closeBtn = form.querySelector('.quote-close') as HTMLButtonElement | null;
+
+		const openModal = (event: Event) => {
+			event.preventDefault();
+			modal.showModal();
+		};
+
+		document.querySelectorAll('a[href="#quote"]').forEach((trigger) => {
+			trigger.addEventListener('click', openModal);
+		});
+
+		closeBtn?.addEventListener('click', () => modal.close());
+
+		// Close when the backdrop (outside the form) is clicked.
+		modal.addEventListener('click', (event) => {
+			if (event.target === modal) {
+				modal.close();
+			}
+		});
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			if (!form.reportValidity()) {
+				return;
+			}
+
+			const originalLabel = submitBtn?.textContent ?? '';
+			if (submitBtn) {
+				submitBtn.disabled = true;
+				submitBtn.textContent = 'Sending…';
+			}
+
+			try {
+				const body = new URLSearchParams(
+					new FormData(form) as unknown as Record<string, string>
+				).toString();
+
+				const response = await fetch('/', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+					body,
+				});
+
+				if (!response.ok) {
+					throw new Error(`Request failed: ${response.status}`);
+				}
+
+				modal.close();
+				form.reset();
+				window.alert("Thanks! We'll be in touch within 1 business day.");
+			} catch (error) {
+				window.alert('Sorry, something went wrong. Please call us or try again.');
+			} finally {
+				if (submitBtn) {
+					submitBtn.disabled = false;
+					submitBtn.textContent = originalLabel;
+				}
+			}
+		});
+	}
+</script>
+
+<style>
+	.quote-modal {
+		width: min(92vw, 480px);
+		padding: 0;
+		border: 3px solid var(--color-green);
+		border-radius: var(--radius-lg);
+		background: var(--color-cream);
+		color: var(--color-text);
+	}
+
+	.quote-modal::backdrop {
+		background: rgba(21, 51, 24, 0.55);
+		backdrop-filter: blur(2px);
+	}
+
+	.quote-form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+		padding: var(--space-xl);
+	}
+
+	.quote-close {
+		position: absolute;
+		top: var(--space-md);
+		right: var(--space-md);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		color: var(--color-green);
+		background: var(--color-white);
+		border: 3px solid var(--color-green);
+	}
+
+	.quote-close:hover {
+		opacity: 0.85;
+	}
+
+	.quote-modal-title {
+		margin: 0;
+	}
+
+	.section-label {
+		margin: 0;
+	}
+
+	.quote-intro {
+		margin: 0 0 var(--space-xs);
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		flex: 1;
+	}
+
+	.field-row {
+		display: flex;
+		gap: var(--space-md);
+	}
+
+	.field label {
+		font-size: 0.9375rem;
+		font-weight: 600;
+		color: var(--color-green);
+	}
+
+	.field input,
+	.field select,
+	.field textarea {
+		font-family: var(--font-family);
+		font-size: 1rem;
+		color: var(--color-text);
+		padding: 10px 12px;
+		border: 3px solid var(--color-green);
+		border-radius: var(--radius-sm);
+		background: var(--color-white);
+		width: 100%;
+	}
+
+	.field textarea {
+		resize: vertical;
+	}
+
+	.field input:focus,
+	.field select:focus,
+	.field textarea:focus {
+		outline: 2px solid var(--color-gold);
+		outline-offset: 1px;
+	}
+
+	.quote-submit {
+		margin-top: var(--space-xs);
+	}
+
+	@media (max-width: 480px) {
+		.field-row {
+			flex-direction: column;
+		}
+	}
+</style>
