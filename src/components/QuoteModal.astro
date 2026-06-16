@@ -13,11 +13,11 @@ const referralSources = ['Google', 'Facebook', 'Instagram', 'Friend', 'Other'];
 <dialog class="quote-modal" id="quote-modal" aria-labelledby="quote-modal-title">
 	<form
 		name="quote-request"
-		method="POST"
-		data-netlify="true"
+
 		netlify-honeypot="bot-field"
 		class="quote-form"
 		id="quote-form"
+		netlify
 	>
 		<input type="hidden" name="form-name" value="quote-request" />
 		<p class="bot-field" hidden>
@@ -26,7 +26,7 @@ const referralSources = ['Google', 'Facebook', 'Instagram', 'Friend', 'Other'];
 
 		<button
 			type="button"
-			class="quote-close"
+			class="quote-close"S
 			aria-label="Close quote form"
 		>
 			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
